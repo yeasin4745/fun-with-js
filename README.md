@@ -1,6 +1,6 @@
 # index.js 💻✨
 
-A collection of creative and useful JavaScript utility methods on `Array`, `String`, and `Window` objects — handcrafted by [Yeasin](https://github.com/yeasin4745/fun-with-js/index.js).
+A collection of creative and useful JavaScript utility methods on `Array`, `String`, and `Window` objects — handcrafted by [Yeasin](https://github.com/yeasin4745/fun-with-js/).
 
 > “Fun with JS, powered by imagination!” 😎
 
