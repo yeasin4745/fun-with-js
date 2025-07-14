@@ -9,6 +9,7 @@ A collection of creative and useful JavaScript utility methods on `Array`, `Stri
 ## 📦 Features
 
 - 📊 Custom Array Methods: `squareSum()`, `cubeSum()`, `shuffle()` and more
+- ✨ Custom Object Methods: `isEmpty()`, `invert()`, `deepClone()`, `cleanFalsy()`, `findTypeValue() `and more
 - 🔤 Advanced String Methods: `capitalize()`, `reverseComplex()`, `toSarcasm()` etc.
 - 🧪 Text analysis: word count, letter count
 - 🔧 Utility logging: `window.log()` for quick debugging
