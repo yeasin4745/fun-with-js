@@ -64,6 +64,94 @@ Array.prototype.shuffle=function(){
  return this.sort(() =>Math.random() -.5)
 }
 
+
 window.log=function(...value){
  console.log(...value);
 }
+
+Object.prototype.isEmpty=function(){
+ return Object.keys(this).length===0;
+}
+
+
+Object.prototype.invert=function(){
+ let result={}
+ for (let key in this) {
+  if(this.hasOwnProperty(key)){
+   result[this[key]]=key;
+  }
+ }
+ return result;
+ 
+ 
+ 
+ 
+ let key=Object.keys(this);
+ let value=Object.values(this)
+let obj={}
+for (var i = 0; i < key.length; i++) {
+ obj[value[i]]=key[i]
+}
+ return obj;
+}
+
+Object.prototype.deepClon=function(){
+ return JSON.parse(JSON.stringify(this))
+}
+
+
+Object.prototype.countValues=function (type){
+ 
+ return Object.values(this).filter((val) =>typeof val ===type ).length;
+ 
+ 
+ let c=0;
+ for (var key in this) {
+  if(typeof this[key]===type){
+   c++;
+  }
+ }
+ return c;
+ 
+ /*
+ switch (type) {
+  case 'string':
+   return Object.values(this).filter((val) => typeof val=='string').length;
+   break;
+  case 'number':
+   return Object.values(this).filter((val) =>typeof val=='number' ).length;
+   break;
+  case 'boolean':
+  return Object.values(this).filter((val) =>typeof val=='boolean' ).length;
+   break;
+  case 'object':
+   return Object.values(this).filter((val) =>typeof val=='object' ).length;
+   break;
+  
+  default:
+   return Object.keys(this).length
+ }
+ */
+}
+
+Object.prototype.cleanFalsy=function(){
+let result={}
+for (let k in this) {
+ if(this.hasOwnProperty(k) &&  this[k]){
+  result[k]=this[k]
+ }
+}
+ return result;
+}
+
+Object.prototype.findByType=function (...t){
+let result={} 
+ for (var k in this) {
+ if(this.hasOwnProperty(k) && t.includes(typeof this[k])){
+  result[k]=this[k]
+ } 
+ }
+return result; 
+ 
+}
+
