@@ -1,157 +1,145 @@
-Array.prototype.squareSum=function(){
- let list=this;
- return list.reduce((acc,val) =>acc + val**2 ,0)
- }
+Array.prototype.squareSum = function () {
+  return this.reduce((acc, val) => acc + val ** 2, 0);
+};
 
-Array.prototype.evenOnly=function(){
- return this.filter((item) =>item%2===0 )
-}
+Array.prototype.evenOnly = function () {
+  return this.filter((item) => item % 2 === 0);
+};
 
-
-Array.prototype.cubeSum=function() {
- return this.reduce((acc,val) =>acc+ val**3 ,0 );
-} 
-
+Array.prototype.cubeSum = function () {
+  return this.reduce((acc, val) => acc + val ** 3, 0);
+};
 
 Array.prototype.reverseSort = function () {
   return [...this].sort((a, b) => b - a);
 };
 
+Array.prototype.max = function () {
+  return this.reduce((acc, val) => (acc > val ? acc : val));
+};
 
-Array.prototype.max=function(){
- return this.reduce((acc,val) =>acc>val ? acc : val )
-}
+Array.prototype.shuffle = function () {
+  return this.sort(() => Math.random() - 0.5);
+};
 
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
 
-String.prototype.capitalize=function(){
-let split=this.split(' ')
-return split.map((c,i) =>c.slice(0,1).toUpperCase()+ split[i].slice(1) ).join(' ')
+Array.prototype.average = function () {
+  return this.length === 0 ? 0 : this.reduce((acc, val) => acc + val, 0) / this.length;
+};
 
-}
+Array.prototype.chunk = function (size) {
+  const result = [];
+  for (let i = 0; i < this.length; i += size) {
+    result.push(this.slice(i, i + size));
+  }
+  return result;
+};
 
+String.prototype.capitalize = function () {
+  let split = this.split(" ");
+  return split.map((c, i) => c.slice(0, 1).toUpperCase() + split[i].slice(1)).join(" ");
+};
 
 String.prototype.reverseLettersOnly = function () {
-  return this.split(' ').map(w => w.split('').reverse().join('')).join(' ');
+  return this.split(" ")
+    .map((w) => w.split("").reverse().join(""))
+    .join(" ");
 };
 
 String.prototype.reverseWordsOnly = function () {
-  return this.split(' ').reverse().join(' ');
+  return this.split(" ").reverse().join(" ");
 };
 
 String.prototype.reverseComplex = function () {
-  return this.split(' ').map(w => w.split('').reverse().join('')).reverse().join(' ');
+  return this.split(" ")
+    .map((w) => w.split("").reverse().join(""))
+    .reverse()
+    .join(" ");
 };
 
- String.prototype.toSarcasm=function(){
-  return this.split('').map((s ) =>Math.random() > .5 ? s.toUpperCase() : s.toLowerCase() ).join('')
-  return this.split('').map((c,i) =>i%2!==0 ? c.toUpperCase() : c.toLowerCase() ).join('')
- }
-
-String.prototype.letterCount=function(){
- return this.replace(/[^a-zA-Z]/g,'').length;
- 
- return this.split('').filter((c) =>c!== ' ').length;
-}
-
-String.prototype.wordCount = function (type = 'all') {
-  if (type === 'lettersOnly') {
-    return this.replace(/[^A-Za-z]/g, ' ').split(' ').filter(w => w !== '').length;
-  }
-  return this.trim().split(/\s+/).filter(w => w !== '').length;
+String.prototype.toSarcasm = function () {
+  return this.split("")
+    .map((s) => (Math.random() > 0.5 ? s.toUpperCase() : s.toLowerCase()))
+    .join("");
 };
 
-Array.prototype.shuffle=function(){
- return this.sort(() =>Math.random() -.5)
-}
+String.prototype.letterCount = function () {
+  return this.replace(/[^a-zA-Z]/g, "").length;
+};
 
-
-window.log=function(...value){
- console.log(...value);
-}
-
-Object.prototype.isEmpty=function(){
- return Object.keys(this).length===0;
-}
-
-
-Object.prototype.invert=function(){
- let result={}
- for (let key in this) {
-  if(this.hasOwnProperty(key)){
-   result[this[key]]=key;
+String.prototype.wordCount = function (type = "all") {
+  if (type === "lettersOnly") {
+    return this.replace(/[^A-Za-z]/g, " ")
+      .split(" ")
+      .filter((w) => w !== "")
+      .length;
   }
- }
- return result;
- 
- 
- 
- 
- let key=Object.keys(this);
- let value=Object.values(this)
-let obj={}
-for (var i = 0; i < key.length; i++) {
- obj[value[i]]=key[i]
-}
- return obj;
-}
+  return this.trim().split(/\s+/).filter((w) => w !== "").length;
+};
 
-Object.prototype.deepClon=function(){
- return JSON.parse(JSON.stringify(this))
-}
+String.prototype.slugify = function () {
+  return this.toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+};
 
+String.prototype.truncate = function (length, suffix = "...") {
+  return this.length > length ? this.substring(0, length) + suffix : this;
+};
 
-Object.prototype.countValues=function (type){
- 
- return Object.values(this).filter((val) =>typeof val ===type ).length;
- 
- 
- let c=0;
- for (var key in this) {
-  if(typeof this[key]===type){
-   c++;
+window.log = function (...value) {
+  console.log(...value);
+};
+
+Object.prototype.isEmpty = function () {
+  return Object.keys(this).length === 0;
+};
+
+Object.prototype.invert = function () {
+  let result = {};
+  for (let key in this) {
+    if (this.hasOwnProperty(key)) {
+      result[this[key]] = key;
+    }
   }
- }
- return c;
- 
- /*
- switch (type) {
-  case 'string':
-   return Object.values(this).filter((val) => typeof val=='string').length;
-   break;
-  case 'number':
-   return Object.values(this).filter((val) =>typeof val=='number' ).length;
-   break;
-  case 'boolean':
-  return Object.values(this).filter((val) =>typeof val=='boolean' ).length;
-   break;
-  case 'object':
-   return Object.values(this).filter((val) =>typeof val=='object' ).length;
-   break;
-  
-  default:
-   return Object.keys(this).length
- }
- */
-}
+  return result;
+};
 
-Object.prototype.cleanFalsy=function(){
-let result={}
-for (let k in this) {
- if(this.hasOwnProperty(k) &&  this[k]){
-  result[k]=this[k]
- }
-}
- return result;
-}
+Object.prototype.deepClone = function () {
+  return JSON.parse(JSON.stringify(this));
+};
 
-Object.prototype.findByType=function (...t){
-let result={} 
- for (var k in this) {
- if(this.hasOwnProperty(k) && t.includes(typeof this[k])){
-  result[k]=this[k]
- } 
- }
-return result; 
- 
-}
+Object.prototype.countValues = function (type) {
+  return Object.values(this).filter((val) => typeof val === type).length;
+};
 
+Object.prototype.cleanFalsy = function () {
+  let result = {};
+  for (let k in this) {
+    if (this.hasOwnProperty(k) && this[k]) {
+      result[k] = this[k];
+    }
+  }
+  return result;
+};
+
+Object.prototype.findByType = function (...t) {
+  let result = {};
+  for (var k in this) {
+    if (this.hasOwnProperty(k) && t.includes(typeof this[k])) {
+      result[k] = this[k];
+    }
+  }
+  return result;
+};
+
+Object.prototype.toQueryString = function () {
+  return Object.keys(this)
+    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(this[key]))
+    .join("&");
+};
